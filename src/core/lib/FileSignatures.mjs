@@ -40,7 +40,7 @@ export const FILE_SIGNATURES = {
                 4: [0x37, 0x39], // 7|9
                 5: 0x61  // a
             },
-            extractor: null
+            extractor: extractGIF
         },
         {
             name: "Portable Network Graphics image",
@@ -736,7 +736,7 @@ export const FILE_SIGNATURES = {
                 10: 0x56,
                 11: 0x45
             },
-            extractor: null
+            extractor: extractWAV
         },
         {
             name: "OGG audio",
@@ -1282,17 +1282,30 @@ export const FILE_SIGNATURES = {
             extension: "dylib",
             mime: "application/octet-stream",
             description: "",
-            signature: {
-                0: 0xca,
-                1: 0xfe,
-                2: 0xba,
-                3: 0xbe,
-                4: 0x00,
-                5: 0x00,
-                6: 0x00,
-                7: [0x01, 0x02, 0x03]
-            },
-            extractor: null
+            signature: [
+                {
+                    0: 0xca,
+                    1: 0xfe,
+                    2: 0xba,
+                    3: 0xbe,
+                    4: 0x00,
+                    5: 0x00,
+                    6: 0x00,
+                    7: [0x01, 0x02, 0x03]
+                },
+                {
+                    0: 0xce,
+                    1: 0xfa,
+                    2: 0xed,
+                    3: 0xfe,
+                    4: 0x07,
+                    5: 0x00,
+                    6: 0x00,
+                    7: 0x00,
+                    8: [0x01, 0x02, 0x03]
+                }
+            ],
+            extractor: extractMACHO
         },
         {
             name: "MacOS Mach-O 64-bit object",
@@ -1305,7 +1318,7 @@ export const FILE_SIGNATURES = {
                 2: 0xed,
                 3: 0xfe
             },
-            extractor: null
+            extractor: extractMACHO
         },
         {
             name: "Adobe Flash",
@@ -1404,7 +1417,7 @@ export const FILE_SIGNATURES = {
                 260: 0x61,
                 261: 0x72
             },
-            extractor: null
+            extractor: extractTAR
         },
         {
             name: "Roshal Archive",
@@ -1444,7 +1457,7 @@ export const FILE_SIGNATURES = {
                 1: 0x5a,
                 2: 0x68
             },
-            extractor: null
+            extractor: extractBZIP2
         },
         {
             name: "7zip",
@@ -1485,7 +1498,7 @@ export const FILE_SIGNATURES = {
                 4: 0x5a,
                 5: 0x0
             },
-            extractor: null
+            extractor: extractXZ
         },
         {
             name: "Tarball",
@@ -1870,7 +1883,7 @@ export const FILE_SIGNATURES = {
                 2: 0x4c,
                 3: 0x69
             },
-            extractor: null
+            extractor: extractSQLITE
         },
         {
             name: "BitTorrent link",
@@ -1993,7 +2006,7 @@ export const FILE_SIGNATURES = {
                 6: 0x4c,
                 7: 0x65
             },
-            extractor: null
+            extractor: extractEVT
         },
         {
             name: "Windows Event Log",
@@ -2009,7 +2022,7 @@ export const FILE_SIGNATURES = {
                 5: 0x6c,
                 6: 0x65
             },
-            extractor: null
+            extractor: extractEVTX
         },
         {
             name: "Windows Pagedump",
@@ -2331,6 +2344,133 @@ export const FILE_SIGNATURES = {
                 19: 0x46
             },
             extractor: null
+        },
+        {
+            name: "Bash",
+            extension: "bash",
+            mime: "application/bash",
+            description: "",
+            signature: {
+                0: 0x23, // #!/bin/bash
+                1: 0x21,
+                2: 0x2f,
+                3: 0x62,
+                4: 0x69,
+                5: 0x6e,
+                6: 0x2f,
+                7: 0x62,
+                8: 0x61,
+                9: 0x73,
+                10: 0x68,
+            },
+            extractor: null
+        },
+        {
+            name: "Shell",
+            extension: "sh",
+            mime: "application/sh",
+            description: "",
+            signature: {
+                0: 0x23, // #!/bin/sh
+                1: 0x21,
+                2: 0x2f,
+                3: 0x62,
+                4: 0x69,
+                5: 0x6e,
+                6: 0x2f,
+                7: 0x73,
+                8: 0x68,
+            },
+            extractor: null
+        },
+        {
+            name: "Python",
+            extension: "py,pyc,pyd,pyo,pyw,pyz",
+            mime: "application/python",
+            description: "",
+            signature: {
+                0: 0x23, // #!/usr/bin/python(2|3)
+                1: 0x21,
+                2: 0x2f,
+                3: 0x75,
+                4: 0x73,
+                5: 0x72,
+                6: 0x2f,
+                7: 0x62,
+                8: 0x69,
+                9: 0x6e,
+                10: 0x2f,
+                11: 0x70,
+                12: 0x79,
+                13: 0x74,
+                14: 0x68,
+                15: 0x6f,
+                16: 0x6e,
+                17: [0x32, 0x33, 0xa, 0xd],
+            },
+            extractor: null
+        },
+        {
+            name: "Ruby",
+            extension: "rb",
+            mime: "application/ruby",
+            description: "",
+            signature: {
+                0: 0x23, // #!/usr/bin/ruby
+                1: 0x21,
+                2: 0x2f,
+                3: 0x75,
+                4: 0x73,
+                5: 0x72,
+                6: 0x2f,
+                7: 0x62,
+                8: 0x69,
+                9: 0x6e,
+                10: 0x2f,
+                11: 0x72,
+                12: 0x75,
+                13: 0x62,
+                14: 0x79,
+            },
+            extractor: null
+        },
+        {
+            name: "perl",
+            extension: "pl,pm,t,pod",
+            mime: "application/perl",
+            description: "",
+            signature: {
+                0: 0x23, // #!/usr/bin/perl
+                1: 0x21,
+                2: 0x2f,
+                3: 0x75,
+                4: 0x73,
+                5: 0x72,
+                6: 0x2f,
+                7: 0x62,
+                8: 0x69,
+                9: 0x6e,
+                10: 0x2f,
+                11: 0x70,
+                12: 0x65,
+                13: 0x72,
+                14: 0x6c,
+            },
+            extractor: null
+        },
+        {
+            name: "php",
+            extension: "php,phtml,php3,php4,php5,php7,phps,php-s,pht,phar",
+            mime: "application/php",
+            description: "",
+            signature: {
+                0: 0x3c, // <?php
+                1: 0x3f,
+                2: 0x70,
+                3: 0x68,
+                4: 0x70,
+            },
+            extractor: null
         }
     ]
 };
@@ -2441,6 +2581,49 @@ export function extractJPEG(bytes, offset) {
 
 
 /**
+ * GIF extractor.
+ *
+ * @param {Uint8Array} bytes
+ * @param {Number} offset
+ * @returns {Uint8Array}
+ */
+export function extractGIF(bytes, offset) {
+    const stream = new Stream(bytes.slice(offset));
+
+    // Move to application extension block.
+    stream.continueUntil([0x21, 0xff]);
+
+    // Move to Graphic Control Extension for frame #1.
+    stream.continueUntil([0x21, 0xf9]);
+    stream.moveForwardsBy(2);
+
+    while (stream.hasMore()) {
+        // Move to Image descriptor.
+        stream.moveForwardsBy(stream.readInt(1) + 1);
+
+        // Move past Image descriptor to the image data.
+        stream.moveForwardsBy(11);
+
+        // Loop until next Graphic Control Extension.
+        while (stream.getBytes(2) !== [0x21, 0xf9]) {
+            stream.moveBackwardsBy(2);
+            stream.moveForwardsBy(stream.readInt(1));
+            if (!stream.readInt(1))
+                break;
+            stream.moveBackwardsBy(1);
+        }
+
+        // When the end of the file is [0x00, 0x3b], end.
+        if (stream.readInt(1) === 0x3b)
+            break;
+
+        stream.moveForwardsBy(1);
+    }
+    return stream.carve();
+}
+
+
+/**
  * Portable executable extractor.
  * Assumes that the offset refers to an MZ header.
  *
@@ -2463,7 +2646,7 @@ export function extractMZPE(bytes, offset) {
     const numSections = stream.readInt(2, "le");
 
     // Read Optional Header Magic to determine the state of the image file
-    // 0x10b = normal exeuctable, 0x107 = ROM image, 0x20b = PE32+ executable
+    // 0x10b = normal executable, 0x107 = ROM image, 0x20b = PE32+ executable
     stream.moveForwardsBy(16);
     const optionalMagic = stream.readInt(2, "le");
     const pe32Plus = optionalMagic === 0x20b;
@@ -2551,6 +2734,154 @@ export function extractZIP(bytes, offset) {
 
 
 /**
+ * MACHO extractor
+ *
+ * @param {Uint8Array} bytes
+ * @param {number} offset
+ * @returns {Uint8Array}
+ */
+export function extractMACHO(bytes, offset) {
+
+    // Magic bytes.
+    const MHCIGAM64 = "207250237254";
+    const MHMAGIC64 = "254237250207";
+    const MHCIGAM = "206250237254";
+
+
+    /**
+     * Checks to see if the file is 64-bit.
+     *
+     * @param {string} magic
+     * @returns {bool}
+     */
+    function isMagic64(magic) {
+        return magic === MHCIGAM64 || magic === MHMAGIC64;
+    }
+
+
+    /**
+     * Checks the endianness of the file.
+     *
+     * @param {string} magic
+     * @returns {bool}
+     */
+    function shouldSwapBytes(magic) {
+        return magic === MHCIGAM || magic === MHCIGAM64;
+    }
+
+
+    /**
+     * Jumps through segment information and calculates the sum of the segement sizes.
+     *
+     * @param {Stream} stream
+     * @param {number} offset
+     * @param {string} isSwap
+     * @param {number} ncmds
+     * @returns {number}
+     */
+    function dumpSegmentCommands(stream, offset, isSwap, ncmds) {
+        let total = 0;
+        const LCSEGEMENT64 = 0x19;
+        const LCSEGEMENT = 0x1;
+
+        for (let i = 0; i < ncmds; i++) {
+
+            // Move to start of segment.
+            stream.moveTo(offset);
+            const cmd = stream.readInt(4, isSwap);
+            if (cmd === LCSEGEMENT64) {
+
+                // Move to size of segment field.
+                stream.moveTo(offset + 48);
+
+                // Extract size of segement.
+                total += stream.readInt(8, isSwap);
+                stream.moveTo(offset + 4);
+
+                // Move to offset of next segment.
+                offset += stream.readInt(4, isSwap);
+            } else if (cmd === LCSEGEMENT) {
+                stream.moveTo(offset + 36);
+
+                // Extract size of segement.
+                total += stream.readInt(4, isSwap);
+                stream.moveTo(offset + 4);
+                offset += stream.readInt(4, isSwap);
+            }
+        }
+        return total;
+    }
+
+
+    /**
+     * Reads the number of command segments.
+     *
+     * @param {Stream} stream
+     * @param {bool} is64
+     * @param {string} isSwap
+     * @returns {number}
+     */
+    function dumpMachHeader(stream, is64, isSwap) {
+        let loadCommandsOffset = 28;
+        if (is64)
+            loadCommandsOffset += 4;
+
+        // Move to number of commands field.
+        stream.moveTo(16);
+        const ncmds = stream.readInt(4, isSwap);
+        return dumpSegmentCommands(stream, loadCommandsOffset, isSwap, ncmds);
+    }
+
+
+    const stream = new Stream(bytes.slice(offset));
+    const magic = stream.getBytes(4).join("");
+
+    // Move to the end of the final segment.
+    stream.moveTo(dumpMachHeader(stream, isMagic64(magic), shouldSwapBytes(magic) ? "le" : "be"));
+    return stream.carve();
+}
+
+
+/**
+ * TAR extractor.
+ *
+ * @param {Uint8Array} bytes
+ * @param {number} offset
+ * @returns {Uint8Array}
+ */
+export function extractTAR(bytes, offset) {
+    const stream = new Stream(bytes.slice(offset));
+    while (stream.hasMore()) {
+
+        // Move to ustar identifier.
+        stream.moveForwardsBy(0x101);
+        if (stream.getBytes(5).join("") !== [0x75, 0x73, 0x74, 0x61, 0x72].join("")) {
+            // Reverse back to the end of the last section.
+            stream.moveBackwardsBy(0x106);
+            break;
+        }
+
+        // Move back to file size field.
+        stream.moveBackwardsBy(0x8a);
+        let fsize = 0;
+
+        // Read file size field.
+        stream.getBytes(11).forEach((element, index) => {
+            fsize += (element - 48).toString();
+        });
+
+        // Round number up from octet to nearest 512.
+        fsize = (Math.ceil(parseInt(fsize, 8) / 512) * 512);
+
+        // Move forwards to the end of that file.
+        stream.moveForwardsBy(fsize + 0x179);
+    }
+    stream.consumeWhile(0x00);
+    return stream.carve();
+}
+
+
+/**
  * PNG extractor.
  *
  * @param {Uint8Array} bytes
@@ -2597,6 +2928,26 @@ export function extractBMP(bytes, offset) {
 
     // Move to end of file (file size minus header and size field)
     stream.moveForwardsBy(bmpSize - 6);
+
+    return stream.carve();
+}
+
+
+/**
+ * WAV extractor.
+ *
+ * @param {Uint8Array} bytes
+ * @param {Number} offset
+ * @returns {Uint8Array}
+ */
+export function extractWAV(bytes, offset) {
+    const stream = new Stream(bytes.slice(offset));
+
+    // Move to file size field.
+    stream.moveTo(4);
+
+    // Move to file size.
+    stream.moveTo(stream.readInt(4, "le") - 4);
 
     return stream.carve();
 }
@@ -2684,6 +3035,31 @@ export function extractRTF(bytes, offset) {
                 break;
         }
     }
+
+    return stream.carve();
+}
+
+
+/**
+ * SQLITE extractor.
+ *
+ * @param {Uint8Array} bytes
+ * @param {number} offset
+ * @returns {Uint8Array}
+ */
+export function extractSQLITE(bytes, offset) {
+    const stream = new Stream(bytes.slice(offset));
+
+    // Extract the size of the page.
+    stream.moveTo(16);
+    const pageSize = stream.readInt(2);
+
+    // Extract the number of pages.
+    stream.moveTo(28);
+    const numPages = stream.readInt(4);
+
+    // Move to the end of all the pages.
+    stream.moveTo(pageSize*numPages);
 
     return stream.carve();
 }
@@ -2778,6 +3154,43 @@ export function extractGZIP(bytes, offset) {
 
 
 /**
+ * BZIP2 extractor.
+ *
+ * @param {Uint8Array} bytes
+ * @param {Number} offset
+ * @returns {Uint8Array}
+ */
+export function extractBZIP2(bytes, offset) {
+    const stream = new Stream(bytes.slice(offset));
+
+    // The EOFs shifted between all possible combinations.
+    const lookingfor = [
+        [0x77, 0x24, 0x53, 0x85, 0x09],
+        [0xee, 0x48, 0xa7, 0x0a, 0x12],
+        [0xdc, 0x91, 0x4e, 0x14, 0x24],
+        [0xb9, 0x22, 0x9c, 0x28, 0x48],
+        [0x72, 0x45, 0x38, 0x50, 0x90],
+        [0xbb, 0x92, 0x29, 0xc2, 0x84],
+        [0x5d, 0xc9, 0x14, 0xe1, 0x42],
+        [0x2e, 0xe4, 0x8a, 0x70, 0xa1],
+        [0x17, 0x72, 0x45, 0x38, 0x50]
+    ];
+
+    for (let i = 0; i < lookingfor.length; i++) {
+        // Continue until an EOF.
+        stream.continueUntil(lookingfor[i]);
+        if (stream.getBytes(5).join("") === lookingfor[i].join(""))
+            break;
+
+        // Jump back to the start if invalid EOF.
+        stream.moveTo(0);
+    }
+    stream.moveForwardsBy(4);
+    return stream.carve();
+}
+
+
+/**
  * Zlib extractor.
  *
  * @param {Uint8Array} bytes
@@ -2803,6 +3216,26 @@ export function extractZlib(bytes, offset) {
 
     // Skip over final checksum
     stream.moveForwardsBy(4);
+
+    return stream.carve();
+}
+
+
+/**
+ * XZ extractor.
+ *
+ * @param {Uint8Array} bytes
+ * @param {Number} offset
+ * @returns {string}
+ */
+export function extractXZ(bytes, offset) {
+    const stream = new Stream(bytes.slice(offset));
+
+    // Move forward to EOF marker
+    stream.continueUntil([0x00, 0x00, 0x00, 0x00, 0x04, 0x59, 0x5a]);
+
+    // Move over EOF marker
+    stream.moveForwardsBy(7);
 
     return stream.carve();
 }
@@ -3058,4 +3491,54 @@ function readHuffmanCode(stream, table) {
     stream.moveBackwardsByBits(maxCodeLength - codeLength);
 
     return codeWithLength & 0xffff;
+}
+
+
+/**
+ * EVTX extractor.
+ *
+ * @param {Uint8Array} bytes
+ * @param {Number} offset
+ * @returns {Uint8Array}
+ */
+export function extractEVTX(bytes, offset) {
+    const stream = new Stream(bytes.slice(offset));
+
+    // Move to first ELFCHNK.
+    stream.moveTo(0x28);
+    const total = stream.readInt(4, "le") - 0x2c;
+    stream.moveForwardsBy(total);
+
+    while (stream.hasMore()) {
+        // Loop through ELFCHNKs.
+        if (stream.getBytes(7).join("") !== [0x45, 0x6c, 0x66, 0x43, 0x68, 0x6e, 0x6b].join(""))
+            break;
+        stream.moveForwardsBy(0xfff9);
+    }
+    stream.consumeWhile(0x00);
+    return stream.carve();
+}
+
+
+/**
+ * EVT extractor.
+ *
+ * @param {Uint8Array} bytes
+ * @param {Number} offset
+ * @returns {Uint8Array}
+ */
+export function extractEVT(bytes, offset) {
+    const stream = new Stream(bytes.slice(offset));
+
+    // Extract offset of EOF.
+    stream.moveTo(0x14);
+    const eofOffset = stream.readInt(4, "le");
+    stream.moveTo(eofOffset);
+
+    // Extract the size of the EOF.
+    const eofSize = stream.readInt(4, "le");
+
+    // Move past EOF.
+    stream.moveForwardsBy(eofSize-4);
+    return stream.carve();
 }

@@ -2,6 +2,18 @@
 All major and minor version changes will be documented in this file. Details of patch-level version changes can be found in [commit messages](https://github.com/gchq/CyberChef/commits/master).
 
 
+### [9.11.0] - 2019-11-06
+- Implemented CFB, OFB, and CTR modes for Blowfish operations [@cbeuw] | [#653]
+
+### [9.10.0] - 2019-11-06
+- 'Lorenz' operation added [@VirtualColossus] | [#528]
+
+### [9.9.0] - 2019-11-01
+- Added support for 109 more character encodings [@n1474335]
+
+### [9.8.0] - 2019-10-31
+- 'Avro to JSON' operation added [@jarrodconnolly] | [#865]
+
 ### [9.7.0] - 2019-09-13
 - 'Optical Character Recognition' operation added [@MShwed] [@n1474335] | [#632]
 
@@ -185,6 +197,10 @@ All major and minor version changes will be documented in this file. Details of 
 
 
 
+[9.11.0]: https://github.com/gchq/CyberChef/releases/tag/v9.11.0
+[9.10.0]: https://github.com/gchq/CyberChef/releases/tag/v9.10.0
+[9.9.0]: https://github.com/gchq/CyberChef/releases/tag/v9.9.0
+[9.8.0]: https://github.com/gchq/CyberChef/releases/tag/v9.8.0
 [9.7.0]: https://github.com/gchq/CyberChef/releases/tag/v9.7.0
 [9.6.0]: https://github.com/gchq/CyberChef/releases/tag/v9.6.0
 [9.5.0]: https://github.com/gchq/CyberChef/releases/tag/v9.5.0
@@ -262,6 +278,9 @@ All major and minor version changes will be documented in this file. Details of 
 [@Ge0rg3]: https://github.com/Ge0rg3
 [@MShwed]: https://github.com/MShwed
 [@kassi]: https://github.com/kassi
+[@jarrodconnolly]: https://github.com/jarrodconnolly
+[@VirtualColossus]: https://github.com/VirtualColossus
+[@cbeuw]: https://github.com/cbeuw
 
 [#95]: https://github.com/gchq/CyberChef/pull/299
 [#173]: https://github.com/gchq/CyberChef/pull/173
@@ -308,6 +327,7 @@ All major and minor version changes will be documented in this file. Details of 
 [#515]: https://github.com/gchq/CyberChef/pull/515
 [#516]: https://github.com/gchq/CyberChef/pull/516
 [#525]: https://github.com/gchq/CyberChef/pull/525
+[#528]: https://github.com/gchq/CyberChef/pull/528
 [#530]: https://github.com/gchq/CyberChef/pull/530
 [#531]: https://github.com/gchq/CyberChef/pull/531
 [#533]: https://github.com/gchq/CyberChef/pull/533
@@ -322,3 +342,5 @@ All major and minor version changes will be documented in this file. Details of 
 [#625]: https://github.com/gchq/CyberChef/pull/625
 [#627]: https://github.com/gchq/CyberChef/pull/627
 [#632]: https://github.com/gchq/CyberChef/pull/632
+[#653]: https://github.com/gchq/CyberChef/pull/653
+[#865]: https://github.com/gchq/CyberChef/pull/865
